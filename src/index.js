@@ -18,12 +18,15 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>Error: <br/>{this.state.errorMessage}</h1>
-        Latitude: {this.state.lat}
-      </div>
-    );
+    if (this.state.errorMessage && !this.state.lat) {
+      return <div>Error: {this.state.errorMessage}</div>;
+    }
+
+    if (!this.state.errorMessage && this.state.lat) {
+      return <div>Latitude: {this.state.lat}</div>;
+    }
+
+    return <div>Loading...</div>;
   }
 }
 
